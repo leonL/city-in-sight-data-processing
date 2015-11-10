@@ -1,0 +1,12 @@
+!	aggStationaryEndUseVar[aggStationaryEndUse]: aggStationaryEndUse
+
+
+
+"Space_Heating",0.00
+"Space_Cooling",0.00
+"Water_Heating",0.00
+"Lighting",0.00
+"Major_Appliances",0.00
+"Plug_Load",0.00
+"Industrial_Manufacturing",0.00
+"Transportation",0.00

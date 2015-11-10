@@ -1,0 +1,12 @@
+!	fuelTypeAggVar[fuelTypeAgg]: fuelTypeAgg
+
+
+
+"Natural_Gas",0.00
+"Oil",0.00
+"Coal",0.00
+"Water",0.00
+"Solar",0.00
+"Wind",0.00
+"Imported_Electricity",0.00
+"Other",0.00
