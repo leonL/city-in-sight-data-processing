@@ -56,6 +56,11 @@ with(io, {
     read.csv(file, skip = 4, stringsAsFactors = FALSE)
   }
 
+  create_theme_director <- function(theme) {
+    path <- paste(data_output_path(), theme, sep = '/')
+    dir.create(path)
+  }
+
   write_theme_csv <- function(df, theme, filename) {
     file <- paste(data_output_path(), theme, filename, sep = '/')
     flog.info("Writing %s ...", file)
