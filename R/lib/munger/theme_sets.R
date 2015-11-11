@@ -3,20 +3,27 @@ with(munger, {
 
   process_emissions_details_set <- function() {
     theme <- 'Emissions'; filename <- 'emissionsDetailed.csv'
-    df <- process_details_set(theme, filename)
+    df <- process_dimension_cols(theme, filename)
     df[['scope']] <- gsub("Scope_", "", df[['scope']]) %>% as.integer()
     write_theme_csv(df, theme, filename)
-    return(NULL)
+    NULL
   }
 
   process_energy_details_set <- function() {
     theme <- 'Energy'; filename <- 'energyDetailed.csv'
-    df <- process_details_set(theme, filename)
+    df <- process_dimension_cols(theme, filename)
     write_theme_csv(df, theme, filename)
-    return(NULL)
+    NULL
   }
 
-  process_details_set <- function(theme, filename, dimensions = c('sector', 'fuel_type')) {
+  process_energy_by_end_use_set <- function() {
+    theme <- 'Energy'; filename <- 'energyByEndUse.csv'
+    df <- process_dimension_cols(theme, filename, c('end_use', 'fuel_type'))
+    write_theme_csv(df, theme, filename)
+    NULL
+  }
+
+  process_dimension_cols <- function(theme, filename, dimensions = c('sector', 'fuel_type')) {
     df <- read_theme_csv(theme, filename)
     for (dimension in dimensions) {
       df <- replace_dimension_col_with_id_col(df, dimension, dimension_sets[[dimension]][['key']])

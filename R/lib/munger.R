@@ -18,12 +18,14 @@ with(munger, {
 
   process_emissions_sets <- function() {
     process_emissions_details_set()
-    copy_theme_set('Emissions', 'summaryData.csv');
+    copy_theme_set('Emissions', 'summaryData.csv')
     NULL
   }
 
   process_energy_sets <- function() {
     process_energy_details_set()
+    process_energy_by_end_use_set()
+    copy_theme_set('Energy', 'summaryData.csv')
     NULL
   }
 
