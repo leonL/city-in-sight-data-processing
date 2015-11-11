@@ -11,7 +11,7 @@ with(k, {
   )
 
   set_data_path <- function(municipality_name) {
-    data_path <<- paste('..data', municipality_name, sep = '/')
+    data_path <<- paste('..', 'data', municipality_name, sep = '/')
   }; data_path <- '../data/test'
 
   # data subpaths dynamically defined to handle intial changes to data_path (e.g. for tests)

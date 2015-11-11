@@ -1,7 +1,7 @@
 source('base.R')
 source('munger/dimension_sets.R')
 source('munger/theme_sets.R')
-library(dplyr)
+library(dplyr, quietly=TRUE, warn.conflicts=FALSE)
 
 if (!exists("munger")) { munger <- new.env(parent=base) }
 with(munger, {
