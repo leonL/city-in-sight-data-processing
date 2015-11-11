@@ -1,12 +1,13 @@
 # Constants & Config
 
-if (!exists("k")) { k <- new.env() }
+k <- new.env()
 with(k, {
 
   dimension_keys <- list(
     end_use='aggStationaryEndUse',
     sector='aggSubSectorsEnr',
-    fuel_type='fuelTypeAgg'
+    fuel_type='fuelTypeAgg',
+    scenario='scenarioLookup'
   )
 
   set_data_path <- function(municipality_name) {
@@ -31,14 +32,14 @@ with(k, {
 
 # Input & Output helpers
 
-if (!exists("io")) { io <- new.env(parent=k) }
+io <- new.env(parent=k)
 with(io, {
 
-  read_dimensions_csv <- function(dimension) {
+  read_dimensions_csv <- function(dimension, header = FALSE) {
     filename <- paste(dimension_keys[dimension], 'csv', sep = '.')
     file <- paste(data_src_path(), filename, sep = '/')
     flog.info("Reading %s ...", file)
-    read.csv(file, header = FALSE, skip = 4, stringsAsFactors = FALSE)
+    read.csv(file, header = header, skip = 4, stringsAsFactors = FALSE)
   }
 
   write_dimensions_csv <- function(df, dimension) {

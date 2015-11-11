@@ -1,0 +1,10 @@
+!	stdin[ComparisonType,scenarioID,time,summaryTblFlds]: baseline_year_2011
+
+
+
+ComparisonType,scenarioID,time,CO2eq_change_Mt,per_capita_change_tonnePerPerson,%_CO2eq_change,%_per_capita_change
+"BaseYr","6","2050",2.061663e+01,-5.186133e-02,3.156612e+01,-1.061410e+00
+"BaseYr","12","2050",1.211749e+01,-4.903325e-01,1.918114e+01,-1.037500e+01
+"BaseYr","35","2050",1.434317e+01,-4.311304e-01,2.149368e+01,-8.635951e+00
+"BAU","12","2050",-1.063766e+01,-5.984555e-01,-1.237957e+01,-1.237957e+01
+"BAU","35","2050",-4.853965e+00,-2.730752e-01,-5.648798e+00,-5.648796e+00

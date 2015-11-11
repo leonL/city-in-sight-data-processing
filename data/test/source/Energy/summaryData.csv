@@ -1,0 +1,10 @@
+!	stdin[ComparisonType,scenarioID,time,summaryTblFlds]: baseline_year_2011
+
+
+
+ComparisonType,scenarioID,time,EnergyUse_change_PJ,per_capita_change_GJPerPerson,%_EnergyUse_change,%_per_capita_change
+"BaseYr","6","2050",9.994836e+02,1.106420e+01,4.105619e+01,6.075174e+00
+"BaseYr","12","2050",7.609979e+02,-2.352562e+00,3.125981e+01,-1.291754e+00
+"BaseYr","35","2050",7.345510e+02,-3.840426e+00,3.017344e+01,-2.108716e+00
+"BAU","12","2050",-2.384857e+02,-1.341676e+01,-6.945015e+00,-6.945007e+00
+"BAU","35","2050",-2.649326e+02,-1.490462e+01,-7.715181e+00,-7.715180e+00
