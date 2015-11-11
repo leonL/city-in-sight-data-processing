@@ -13,15 +13,18 @@ with(munger, {
       dimension_sets[[name]] <<- process_dimension_set(name)
     }
     copy_dimension_set('scenario', header = TRUE)
+    NULL
   }
 
   process_emissions_sets <- function() {
     process_emissions_details_set()
     copy_theme_set('Emissions', 'summaryData.csv');
+    NULL
   }
 
   process_energy_sets <- function() {
-    return(NULL)
+    process_energy_details_set()
+    NULL
   }
 
 })

@@ -1,3 +1,7 @@
+entity: /year
+unit of measure: megatonne
+
+
 "scenarioID","zoneID","aggSubSectorsEnr","fuelTypeAgg","time","Values"
 6,1,"Residential","Natural_Gas",2011,0.02967203
 6,1,"Residential","Oil",2011,0.002875429
