@@ -15,6 +15,7 @@ with(munger, {
   copy_dimension_set <- function(dimension, header = FALSE) {
     df <- read_dimensions_csv(dimension, header)
     write_dimensions_csv(df, dimension)
+    return(df)
   }
 
 })

@@ -52,17 +52,19 @@ with(io, {
 
   read_theme_csv <- function(theme, filename) {
     file <- paste(data_src_path(), theme, filename, sep = '/')
+    file <- paste(file, 'csv', sep = '.')
     flog.info("Reading %s ...", file)
     read.csv(file, skip = 4, stringsAsFactors = FALSE)
   }
 
-  create_theme_director <- function(theme) {
+  create_theme_directory <- function(theme) {
     path <- paste(data_output_path(), theme, sep = '/')
     dir.create(path)
   }
 
   write_theme_csv <- function(df, theme, filename) {
     file <- paste(data_output_path(), theme, filename, sep = '/')
+    file <- paste(file, 'csv', sep = '.')
     flog.info("Writing %s ...", file)
     write.csv(df, file = file, row.names = FALSE)
     return(NULL)

@@ -2,24 +2,37 @@ if (!exists("munger")) { munger <- new.env(parent=base) }
 with(munger, {
 
   process_emissions_details_set <- function() {
-    theme <- 'Emissions'; filename <- 'emissionsDetailed.csv'
+    theme <- 'Emissions'; filename <- 'emissionsDetailed'
     df <- process_dimension_cols(theme, filename)
     df[['scope']] <- gsub("Scope_", "", df[['scope']]) %>% as.integer()
-    write_theme_csv(df, theme, filename)
+    df <- rename(df, zone_id = zoneID, scenario_id = scenarioID, year = time, total_emissions = Values)
+    write_scenario_specific_csvs(df, theme, filename)
     NULL
   }
 
   process_energy_details_set <- function() {
-    theme <- 'Energy'; filename <- 'energyDetailed.csv'
+    theme <- 'Energy'; filename <- 'energyDetailed'
     df <- process_dimension_cols(theme, filename)
-    write_theme_csv(df, theme, filename)
+    df <- rename(df, zone_id = zoneID, scenario_id = scenarioID, year = time, total = Values)
+    write_scenario_specific_csvs(df, theme, filename)
     NULL
   }
 
   process_energy_by_end_use_set <- function() {
-    theme <- 'Energy'; filename <- 'energyByEndUse.csv'
+    theme <- 'Energy'; filename <- 'energyByEndUse'
     df <- process_dimension_cols(theme, filename, c('end_use', 'fuel_type'))
-    write_theme_csv(df, theme, filename)
+    df <- rename(df, scenario_id = scenarioID, year = time, total = Values)
+    write_scenario_specific_csvs(df, theme, filename)
+    NULL
+  }
+
+  write_scenario_specific_csvs <- function(df, theme, filename) {
+    print(scenario_ids)
+    for (s_id in scenario_ids) {
+      scenario_specific_df <- filter(df, scenario_id == s_id)
+      scenario_specific_filename <- paste(filename, s_id, sep = '_')
+      write_theme_csv(scenario_specific_df, theme, scenario_specific_filename)
+    }
     NULL
   }
 
@@ -32,7 +45,7 @@ with(munger, {
   }
 
   replace_dimension_col_with_id_col <- function(df, dimension, dimension_levels) {
-    dim_id <- paste(dimension, 'ID', sep = '')
+    dim_id <- paste(dimension, 'id', sep = '_')
     dim_key <- dimension_keys[[dimension]]
     df[[dim_id]] <-
       factor(df[[dim_key]], dimension_levels) %>% as.integer()
