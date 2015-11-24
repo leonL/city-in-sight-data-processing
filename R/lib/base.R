@@ -7,7 +7,8 @@ with(k, {
     end_use='aggStationaryEndUse',
     sector='aggSubSectorsEnr',
     fuel_type='fuelTypeAgg',
-    scenario='scenarioLookup'
+    scenario='scenarioLookup',
+    age_group='ageGroup'
   )
 
   set_data_path <- function(municipality_name) {

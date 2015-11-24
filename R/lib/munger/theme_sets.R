@@ -13,7 +13,7 @@ with(munger, {
   process_energy_details_set <- function() {
     theme <- 'Energy'; filename <- 'energyDetailed'
     df <- process_dimension_cols(theme, filename)
-    df <- rename(df, zone_id = zoneID, scenario_id = scenarioID, year = time, total = Values)
+    df <- rename(df, scenario_id = scenarioID, year = time, total = Values)
     write_scenario_specific_csvs(df, theme, filename)
     NULL
   }
@@ -23,6 +23,30 @@ with(munger, {
     df <- process_dimension_cols(theme, filename, c('end_use', 'fuel_type'))
     df <- rename(df, scenario_id = scenarioID, year = time, total = Values)
     write_scenario_specific_csvs(df, theme, filename)
+    NULL
+  }
+
+  process_energy_for_map_set <- function() {
+    theme <- 'Energy'; filename <- 'energyForMap'
+    df <- process_dimension_cols(theme, filename)
+    df <- rename(df, scenario_id = scenarioID, zone_id = zoneID, year = time, total = Values)
+    write_scenario_specific_csvs(df, theme, filename)
+    NULL
+  }
+
+  process_population_by_zone_set <- function() {
+    theme <- 'Demographics'; filename <- 'populationByZone'
+    df <- read_theme_csv(theme, filename)
+    df <- rename(df, population_context_id = popAssumptionID, zone_id = zoneID, year = time, total = Values)
+    write_theme_csv(df, theme, filename)
+    NULL
+  }
+
+  process_population_by_age_set <- function() {
+    theme <- 'Demographics'; filename <- 'populationByAge'
+    df <- process_dimension_cols(theme, filename, c('age_group'))
+    df <- rename(df, population_context_id = popAssumptionID, year = time, total = Values)
+    write_theme_csv(df, theme, filename)
     NULL
   }
 

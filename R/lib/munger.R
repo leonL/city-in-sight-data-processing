@@ -31,8 +31,16 @@ with(munger, {
     create_theme_directory(theme)
     process_energy_details_set()
     process_energy_by_end_use_set()
+    process_energy_for_map_set()
     copy_theme_set(theme, 'summaryData')
     NULL
   }
 
+  process_demographics_sets <- function() {
+    theme <- 'Demographics';
+    create_theme_directory(theme)
+    process_population_by_age_set()
+    process_population_by_zone_set()
+    NULL
+  }
 })
