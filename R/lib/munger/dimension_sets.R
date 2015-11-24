@@ -23,10 +23,17 @@ with(munger, {
     return(df)
   }
 
+  process_scenario_set <- function() {
+    df <- read_dimensions_csv('scenario', header = TRUE)
+    df$scenarioNames <- gsub('_', ' ', df$scenarioNames)
+    write_dimensions_csv(df, 'scenario')
+    return(df)
+  }
+
   copy_dimension_set <- function(dimension, header = FALSE) {
     df <- read_dimensions_csv(dimension, header)
     write_dimensions_csv(df, dimension)
-    return(df)
+    return(NULL)
   }
 
 })

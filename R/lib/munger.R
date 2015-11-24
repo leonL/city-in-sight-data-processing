@@ -13,7 +13,7 @@ with(munger, {
     for (name in names(dimension_keys)) {
       dimension_sets[[name]] <<- process_dimension_set(name)
     }
-    scenarios_df <- copy_dimension_set('scenario', header = TRUE)
+    scenarios_df <- process_scenario_set()
     scenario_ids <<- scenarios_df$scenarioID
     NULL
   }
@@ -40,7 +40,6 @@ with(munger, {
     theme <- 'Demographics';
     create_theme_directory(theme)
     process_population_by_age_set()
-    process_population_by_zone_set()
     NULL
   }
 })
