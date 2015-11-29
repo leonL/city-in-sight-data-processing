@@ -46,6 +46,7 @@ with(munger, {
       df$source_id[source_rows] <- lookup_table[df$source[source_rows]]
       df$target_id[target_rows] <- lookup_table[df$target[target_rows]]
     }
+    df <- select(df, -c(source, target))
     return(df)
   }
 })
