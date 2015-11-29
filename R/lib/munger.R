@@ -18,6 +18,18 @@ with(munger, {
     NULL
   }
 
+  dim_key_id_lookup_tables <- function() {
+    if (is.null(dim_lookup)) {
+      dim_lookup <<-
+        lapply(dimension_sets, function(df) {
+          lookup <- df$id
+          names(lookup) <- df$key
+          return(lookup)
+        })
+    }
+    return(dim_lookup)
+  }; dim_lookup <- NULL
+
   process_emissions_sets <- function() {
     theme <- 'Emissions';
     create_theme_directory(theme)
@@ -32,6 +44,7 @@ with(munger, {
     process_energy_details_set()
     process_energy_by_end_use_set()
     process_energy_for_map_set()
+    process_energy_sankey()
     copy_theme_set(theme, 'summaryData')
     NULL
   }
@@ -40,6 +53,7 @@ with(munger, {
     theme <- 'Demographics';
     create_theme_directory(theme)
     process_population_by_age_set()
+    process_household_totals()
     NULL
   }
 })

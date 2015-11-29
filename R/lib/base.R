@@ -4,12 +4,16 @@ k <- new.env()
 with(k, {
 
   dimension_keys <- list(
+    age_group='ageGroup',
     end_use='aggStationaryEndUse',
     sector='aggSubSectorsEnr',
+    utilization='aggUtilizations',
     fuel_type='fuelTypeAgg',
-    scenario='scenarioLookup',
-    age_group='ageGroup'
+    scenario='scenarioLookup'
   )
+
+  dimension_keys_inverted <- as.list(names(dimension_keys))
+  names(dimension_keys_inverted) <- unlist(dimension_keys, use.names = FALSE)
 
   set_data_path <- function(municipality_name) {
     data_path <<- paste('..', 'data', municipality_name, sep = '/')
