@@ -35,18 +35,41 @@ with(munger, {
 
   process_sankey_target_and_source_cols <- function(theme, filename) {
     df <- read_theme_csv(theme, filename)
-    df <- filter(df, source != target)
-    df <-  mutate(df, target_type = unlist(dimension_keys_inverted[target_type], use.names = FALSE),
-                      source_type = unlist(dimension_keys_inverted[source_type], use.names = FALSE))
-    for (key in dimension_keys_inverted) {
+    df <- filter(df, !(source == target & source_type == target_type))
+    lookup_map <- dimension_lookup_tables_map()
+    for (key in names(lookup_map)) {
       print(key)
-      lookup_table <- dim_key_id_lookup_tables()[[key]]
+      lookup_table <- lookup_map[[key]]
       source_rows <- df$source_type == key
       target_rows <- df$target_type == key
       df$source_id[source_rows] <- lookup_table[df$source[source_rows]]
       df$target_id[target_rows] <- lookup_table[df$target[target_rows]]
     }
+    df <-  mutate(df, target_type = dimension_klass_name_map[target_type],
+                      source_type = dimension_klass_name_map[source_type])
     df <- select(df, -c(source, target))
+    df[is.na(df)] <- 1
     return(df)
   }
+
+  dimension_klass_name_map <- c(
+    ageGroup='AgeGroup',
+    aggStationaryEndUse='EndUse',
+    aggSubSectorsEnr='Sector',
+    aggUtilizations='EnergyUtilization',
+    fuelTypeAgg='FuelType'
+  )
+
+  dimension_lookup_tables_map <- function() {
+    map <- lapply(dimension_sets, function(df) {
+      lookup <- df$id
+      names(lookup) <- df$key
+      return(lookup)
+    })
+    names(map)
+    dim_keys <- unlist(k$dimension_keys)
+    names(map) <- dim_keys[names(map)]
+    return(map)
+  }
+
 })

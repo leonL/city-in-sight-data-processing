@@ -18,18 +18,6 @@ with(munger, {
     NULL
   }
 
-  dim_key_id_lookup_tables <- function() {
-    if (is.null(dim_lookup)) {
-      dim_lookup <<-
-        lapply(dimension_sets, function(df) {
-          lookup <- df$id
-          names(lookup) <- df$key
-          return(lookup)
-        })
-    }
-    return(dim_lookup)
-  }; dim_lookup <- NULL
-
   process_emissions_sets <- function() {
     theme <- 'Emissions';
     create_theme_directory(theme)
