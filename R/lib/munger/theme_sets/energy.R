@@ -48,7 +48,6 @@ with(munger, {
     df <-  mutate(df, target_type = dimension_klass_name_map[target_type],
                       source_type = dimension_klass_name_map[source_type])
     df <- select(df, -c(source, target))
-    df[is.na(df)] <- 1
     return(df)
   }
 
